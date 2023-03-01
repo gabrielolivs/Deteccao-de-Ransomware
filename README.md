@@ -1,6 +1,6 @@
-# Detecção de Ransomware: Um Estudo Acerca da Seleção de features da Camada de Aplicação
+# Um Estudo Acerca da Seleção de Features para a Detecção dos Ransomwares WannaCry, Ryuk e CryptoLocker
 
-A repositório a seguir representa um código e resultados do mesmo. O mesmo se retrata da pesquisa sobre detecção de ransonwares, tendo seu início a pesquisa a cerca das caracteríticas do ransonware WannaCry. Este trabalho tem por objetivo identificar as features representativas para detecção do ransomware WannaCry. Para tanto, a ferramenta Cuckoo Sandbox é usada para capturar o comportamento de arquivos binários sem código malicioso e do WannaCry. A partir disso, tal comportamento foi registrado através da geração de um dataset. Os resultados obtidos através do algoritmo de seleção de features Information Gain (IG) revelam quais são as 20 features mais relevantes dentre 170 features para detecção do malware estudado.
+A repositório a seguir representa um código e resultados do mesmo. O mesmo se retrata da pesquisa sobre detecção de ransonwares, tendo seu início a pesquisa a cerca das caracteríticas do ransonware WannaCry, Ryuk e CryptoLocker. Este trabalho tem por objetivo identificar as features representativas para detecção dos ransomwares citados anteriormente. Para tanto, a ferramenta Cuckoo Sandbox é usada para capturar o comportamento de arquivos binários sem código malicioso e dos ransomwares. A partir disso, tal comportamento foi registrado através da geração de um dataset. Os resultados obtidos através do algoritmo de seleção de features Information Gain (IG) revelam quais são as 20 features mais relevantes dentre 170 features para detecção do malware estudado.
 
 O fluxo de execução do código acima é o seguinte:
 
@@ -109,5 +109,5 @@ A Figura ilustra o cenário de experimentação, que envolve o upload de binári
 
 ![image](https://user-images.githubusercontent.com/51774020/221394708-6ffee3aa-9d7e-4e2e-b6f9-cd51c90c1936.png)
 
-Por fim, foi utilizado o ambiente de desenvolvimento Jupyterlab com a linguagem Python para processar o relatório resultante da análise do Cuckoo. Tal relatório é gerado no formato JavaScript Object Notation (JSON). A partir desse arquivo, foram selecionadas 170 features, tais como chamadas de sistemas e operações realizadas por cada binário executado. Dessa forma, foi possível a construção de um dataset com amostras maliciosas (WannaCry) e legítimas (aplicações típicas de usuários comuns).
+Por fim, foi utilizado o ambiente de desenvolvimento Jupyterlab com a linguagem Python para processar o relatório resultante da análise do Cuckoo. Tal relatório é gerado no formato JavaScript Object Notation (JSON). A partir desse arquivo, foram selecionadas 170 features, tais como chamadas de sistemas e operações realizadas por cada binário executado. Dessa forma, foi possível a construção de um dataset com amostras maliciosas e legítimas (aplicações típicas de usuários comuns).
   
