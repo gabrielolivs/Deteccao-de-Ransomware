@@ -163,5 +163,43 @@ Os malware podem ser encontrados através da plataforma do [VirusShare](https://
 2. CryptoLocker         - c359a944d8c482b0bed83996cef3d2ca
 3. Ryuk                 - f62bb82db62dd6b80908dcd79ea51fb2
 
+Os binários que foram executados, são binários que foram executados na ferramenta online do Cuckoo Sandbox e ferramentas populares, abaixo estaremos disponibilizando as hashes de cada binário não malicioso:
+
+1.  
+2.  3735dc3fad8ac9ca634f47595e1ac380
+3.  d9a280e81e35e71176441ffb604c6257
+4.  ca5d2096f23d7bbae834ac880e5d387e
+5.  14080a3e4e877be235f06509b2a4b6a9
+6.  409d80bb94645fbc4a1fa61c07806883
+7.  a69b297701b07de6d85f194092241b0a
+8.  5770cd42c3b13b6b3481fc1e2230e022
+9.  bda0b467d902c8effbce77fe4e37073c
+10. 26a731679e81925a3e83604b9e9d7e42
+11. ffd8d274e73d5618b31ffa9802c1db34
+12. de6e326bc7d298ce06731a3a6aa058cf
+13. 3da2724f20603120f84b3550cb458147
+14. a89d67424cc3568bd7142af89b22e873
+15. 42c383425dd636200dc1c0b30b3f7b14
+16. a09e62520db5469a3dff49e8e3f2ac7c
+17. 5565837d0e6af6363c7983fee3a5e093
+18. e28c56f9e1e7018ed52bb37fe573380b
+19. 5bb80936e507a9ebe52e662ab72679fa
+20. 5a7adbe9d10b5816b7f53151230fa606
+21. 2c6767db8cb8e89f566228ebc12c9985
+22. a104751f440bfdea55b4962e23781112
+23. 
+24.
+25.
+26.
+27.
+28.
+29.
+30.
+31.
+32.
+33.
+34.
+35.
+
 
 
