@@ -163,7 +163,7 @@ Os malware podem ser encontrados através da plataforma do [VirusShare](https://
 2. CryptoLocker         - c359a944d8c482b0bed83996cef3d2ca
 3. Ryuk                 - f62bb82db62dd6b80908dcd79ea51fb2
 
-Os binários que foram executados, são binários que foram executados na ferramenta online do Cuckoo Sandbox e ferramentas populares, abaixo estaremos disponibilizando as hashes de cada binário não malicioso:
+Os binários que foram executados, são binários que foram executados na ferramenta online do Cuckoo Sandbox e ferramentas populares, abaixo estaremos disponibilizando as hashes de cada binário não malicioso. A coleta dos binários foi realizada de duas formas, 15 dos mesmos foram retirados de binários comumente utilizados por usuários, como por exemplo (Google, Farafi, Firefox, Opera, OperaGX e etc.), os demais binários foram coletados através da ferramenta [Cukoo Sandbox online](https://cuckoo.cert.ee/analysis/). Foi realizado uma coleta pelas análises de binários que possuem o scores mais baixos do mesmo e foi executado no Cuckoo Sandbox que foi intalado em nossa máquina, para evidenciar se o binário realmente não possui um score baixo e que não possue ações maliciosas. 
 
 1.  232375fbdc2980ecd442d64ade1d5b3d
 2.  5cce735d2c777c89e4cd11de55040891
