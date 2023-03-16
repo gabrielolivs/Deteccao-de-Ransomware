@@ -7,100 +7,46 @@ O fluxo de execução do código acima é o seguinte:
 1. Arquivo de JSON amostra de cada binário é gerado pelo [Cuckoo Sandbox](https://cuckoosandbox.org).
 2. Inicialização da função main e chamada da função captura_coluna 'Função criada para capturar todas as features para a filtragem do mesmo'.
 ```py 
-    def captura_coluna(dir_list):
-        print("Lendo => ")
-        col = []
-        print("+========================================================+")
-        for file in dir_list:
-            print("Nome do arquivo: " + file) #-- Nome do arquivo
-            print("++++++++")
-            with open(file,'r', encoding='utf8') as f: #-- Abrindo o arquivo em forma de leitura
-                
-                #-- Instanciando uma variável que recebera a leitura do arquivo JSON
-                data = json.load(f) 
-                count8 = 0
-                
-                #-- Contador para pegar o número de api's que foram chamadas
-                for i in data['behavior']['processes']:
-
-                    count9 = 0 #-- Contador para a coleta dos elementos do termo calls
-                    api = ""
-                    for i in data['behavior']['processes'][count8]['calls']:
-                        api = data['behavior']['processes'][count8]['calls'][count9]['api']
-                        if api in col:
-                            pass #--  Irá dar continuidade no loop (A api já está na lista de colunas)     
-                        else:
-                            col.append(api)
-                            
-                        count9 = count9 + 1 #-- Incrementando contador
-                        
-                    count8 = count8 + 1 #-- Incrementando contador
-        f.close()
-        return col
+def captura_colunas(dir_list):
+    """
+    Função que lê uma lista de arquivos JSON e retorna uma lista das colunas a serem incluídas no arquivo CSV de saída
+    """
+    colunas = []
+    for arquivo in dir_list:
+        with open(arquivo, 'r', encoding='utf8') as f:
+            # Leitura do arquivo JSON
+            data = json.load(f) 
+            for i in data['behavior']['processes']:
+                for j in i['calls']:
+                    api = j['api']
+                    if api not in colunas:
+                        colunas.append(api)
+    return colunas
 ```
 3. Função json_arq 'Função criada para ler os arquivos JSON de um determinado diretório e realizar o tratamento dos dados para a criação de uma tabela informativa'
   ```py
-    #-- Função json_arq 'Função criada para ler os arquivos JSON de um determinado diretório e realizar o tratamento dos dados para a criação de uma tabela informativa'
-    def json_arq(dir_arq,result_features):
-	
-        #-- Laço de repetição para a captura dos dados requeridos
-        for file in dir_arq:
-
-            print("Nome do arquivo: " + file) #-- Nome do arquivo
-
-            #-- Realizando leitura do arquivo json
-            with open(file,'r', encoding='utf8') as f: #-- Abrindo o arquivo em forma de leitura
-                # Nome de cada coluna no CSV
-                col = result_features #-- Colunas
-                col_aux = ['command_line', 'score_binary']
-                col_count = [] #-- Número de registros
-                numbers = []
-                aux = []
-                
+def json_arq(dir_arq, colunas):
+    with open('Data-set-TesteTCLimpos.csv', 'a', newline='', encoding='utf-8') as arquivo_csv:
+        writer = csv.writer(arquivo_csv)
+        col_aux = ['command_line', 'score_binary']
+        writer.writerow(col_aux + colunas)
+        
+        for arquivo in dir_arq:
+            print("Nome do arquivo: " + arquivo) #-- Nome do arquivo
+            with open(arquivo,'r', encoding='utf8') as f:
                 #-- Instanciando uma variável que recebera a leitura do arquivo JSON
                 data = json.load(f) 	
-                
-                count = 0
-                d = open('Data-set-RyukLimpos.csv', 'a', newline='', encoding='utf-8')
-                w = csv.writer(d)
-                w.writerow(col_aux+col) 
-                
-                arquivo = open("ap1_testeatt.txt","a")
-
-                #-- Laço de repetição para a leitura de arquivos JSON
-                #-- O mesmo visa entrar no espaço em questão do arquivo JSON para a captura das informações que queremos coletar",
-                for i in data['behavior']['processes']: #-- For 1
-                    command_line = data['behavior']['processes'][count]['command_line'] #-- Comando utilizando pelo binário
+                for i, process in enumerate(data['behavior']['processes']):
+                    # Comando utilizado pelo binário
+                    command_line = process['command_line']
+                    # Score do binário
                     score = data['info']['score']
                     print("========================================")
-                    print("-> Laço " + str(count))
+                    print("-> Processo " + str(i))
                     print("========================================")
-                    count2 = count
-                    count3 = 0
-
-                    for j in data['behavior']['processes'][count2]['calls']:
-                        #-- print("Adicionando =>  numero: " + str(count2) + " === " + "numero1: " + str(count3) + " => " + data['behavior']['processes'][count2]['calls'][count3]['api']+"\n")
-                        arquivo.writelines(data['behavior']['processes'][count2]['calls'][count3]['api']+"\n") 
-                        count3 = count3 + 1
-                    count = count + 1
-                    
-                    for name in result_features:
-                        with open('ap1_testeatt.txt','r') as file:
-                            ocorrencias = file.read().count(name)
-                        print(name + " = " + str(ocorrencias))
-                        numbers.append(ocorrencias)
-                        
-                    print(numbers)
-                    w.writerow([command_line,score]+numbers)
-                    
-                    with open('ap1_testeatt.txt','w') as fil:
-                        fil.write('')
-                    numbers.clear()
-                    
-                d.close()
-                f.close()
-                arquivo.close()
-
+                    calls = [call['api'] for call in process['calls']]
+                    numeros = [calls.count(coluna) for coluna in colunas]
+                    writer.writerow([command_line, score] + numeros)
   ```
 
 ## Começando 
